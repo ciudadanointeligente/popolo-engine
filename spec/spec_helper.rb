@@ -19,21 +19,25 @@ Spork.prefork do
   # in spec/support/ and its subdirectories.
   Dir[File.expand_path("../support/**/*.rb", __FILE__)].each {|f| require f}
 
+
+  #Railties does not exist and fails but probably this commented lines are something
+  #
+
   # Prevent Spork from caching Popolo classes (see above).
-  Rails.application.railties.all do |railtie|
-    unless railtie.respond_to?(:engine_name) && railtie.engine_name == 'popolo'
-      railtie.eager_load!
-    end
-  end
+  # Rails.application.railties.all do |railtie|
+  #   unless railtie.respond_to?(:engine_name) && railtie.engine_name == 'popolo'
+  #     railtie.eager_load!
+  #   end
+  # end
 
   # Create non-Popolo indexes.
-  Rails.application.railties.engines.each do |engine|
-    unless engine.engine_name == 'popolo'
-      engine.paths["app/models"].expanded.each do |path|
-        Rails::Mongoid.create_indexes("#{path}/**/*.rb")
-      end
-    end
-  end
+  # Rails.application.railties.engines.each do |engine|
+  #   unless engine.engine_name == 'popolo'
+  #     engine.paths["app/models"].expanded.each do |path|
+  #       Rails::Mongoid.create_indexes("#{path}/**/*.rb")
+  #     end
+  #   end
+  # end
 
   require 'database_cleaner'
   require 'mongoid-rspec'
@@ -61,23 +65,23 @@ Spork.each_run do
   Mongoid::Sessions.default.drop
 
   # It's now okay to load Popolo.
-  Rails.application.railties.engines.each do |engine|
-    if engine.engine_name == 'popolo'
-      engine.eager_load!
-    end
-  end
+  # Rails.application.railties.engines.each do |engine|
+  #   if engine.engine_name == 'popolo'
+  #     engine.eager_load!
+  #   end
+  # end
 
-  # Create Popolo indexes.
-  Rails.application.railties.engines.each do |engine|
-    if engine.engine_name == 'popolo'
-      engine.paths["app/models"].expanded.each do |path|
-        Rails::Mongoid.create_indexes("#{path}/**/*.rb")
-      end
-    end
-  end
+  # # Create Popolo indexes.
+  # Rails.application.railties.engines.each do |engine|
+  #   if engine.engine_name == 'popolo'
+  #     engine.paths["app/models"].expanded.each do |path|
+  #       Rails::Mongoid.create_indexes("#{path}/**/*.rb")
+  #     end
+  #   end
+  # end
 
   # Create dummy indexes.
-  Rails::Mongoid.create_indexes(File.expand_path("../dummy/app/models/**/*.rb", __FILE__))
+  # Rails::Mongoid::Tasks::Database.create_indexes(File.expand_path("../dummy/app/models/**/*.rb", __FILE__))
 
   # @todo I18n.backend.reload!
 
