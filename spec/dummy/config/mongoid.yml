@@ -64,5 +64,7 @@ test:
       database: popolo_test
       hosts:
         - localhost:27017
-      options:
-        consistency: :strong
+      # How can I fix this?
+      # options:
+      #   consistency: :strong
+      # How can I fix this?
