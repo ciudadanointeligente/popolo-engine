@@ -2,7 +2,8 @@ require File.expand_path('../boot', __FILE__)
 
 require "action_controller/railtie"
 require "action_mailer/railtie"
-require "active_resource/railtie"
+#According to http://stackoverflow.com/questions/16782198/cannot-load-railtie-after-upgrade-to-rails-4-per-ruby-railstutorial-org
+#require "active_resource/railtie"
 require "sprockets/railtie"
 
 Bundler.require
