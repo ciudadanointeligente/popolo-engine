@@ -12,13 +12,13 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,lib}/**/*"] + ["LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
-  s.add_dependency('rails', '~> 3.2.16')
+  s.add_dependency('rails', '~> 4.0')
   s.add_dependency('inherited_resources', '~> 1.3.1')
-  s.add_dependency('mongoid', '~> 3.1.4')
+  s.add_dependency('mongoid', '~> 4.0')
   s.add_dependency('mongoid-tree', '~> 1.0.4')
 
   s.add_development_dependency('database_cleaner', '~> 0.9')
-  s.add_development_dependency('factory_girl_rails', '~> 4.1')
+  s.add_development_dependency('factory_girl_rails', '~> 4.5')
   s.add_development_dependency('guard-brakeman', '~> 0.5')
   s.add_development_dependency('guard-bundler', '~> 1.0')
   s.add_development_dependency('guard-rspec', '~> 2.1')
@@ -27,6 +27,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency('rb-fsevent', '~> 0.9')
   s.add_development_dependency('rspec-rails', '~> 2.11')
   s.add_development_dependency('mongoid-rspec', '~> 1.5')
-  s.add_development_dependency('spork-rails', '~> 3.2')
+  s.add_development_dependency('spork-rails', '~> 4.0')
   s.add_development_dependency('coveralls')
 end
